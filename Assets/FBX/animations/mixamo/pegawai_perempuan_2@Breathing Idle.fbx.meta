@@ -5,10 +5,15 @@ ModelImporter:
   internalIDToNameTable: []
   externalObjects:
   - first:
-      type: UnityEngine:Material
+      type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 69e799bce13ee6f48b9bcec02b4fe10f, type: 2}
+      name: ImphenziaPalette02-Albedo
+    second: {fileID: 2800000, guid: 38e57c83b7e63ba4eb626fb5879849ff, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: ImphenziaPalette02-Emission
+    second: {fileID: 2800000, guid: 4c4420ee4ad62474ab44237e299d630e, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

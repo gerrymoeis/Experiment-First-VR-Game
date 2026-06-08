@@ -8,7 +8,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material
-    second: {fileID: 2100000, guid: 69e799bce13ee6f48b9bcec02b4fe10f, type: 2}
+    second: {fileID: 2100000, guid: 2634c501a3e31b64d9c893d81e7a4873, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: ImphenziaPalette02-Albedo
+    second: {fileID: 2800000, guid: 9ed3829ffcdad0b4a847c7eed1845562, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: ImphenziaPalette02-Emission
+    second: {fileID: 2800000, guid: 38721ddc6b3ec3c47980be3dec03c0d6, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
