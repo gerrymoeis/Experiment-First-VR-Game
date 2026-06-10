@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainVRScene.unity
     guid: bc834e83bc559174c8f0344612d04d59
+  - enabled: 1
+    path: Assets/Scenes/LobbyScene.unity
+    guid: 03facb29908388a4faceb41e3e7a899e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: bef087cf1341ca845b2a1bc230069485, type: 2}
