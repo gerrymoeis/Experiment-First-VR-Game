@@ -1,8 +1,12 @@
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class InterviewQuiz : MonoBehaviour
 {
+    [Header("Question Database")]
+    [SerializeField] private QuestionData[] questions;
+
     [Header("Question UI")]
     [SerializeField] private TMP_Text speakerText;
     [SerializeField] private TMP_Text progressText;
@@ -16,15 +20,16 @@ public class InterviewQuiz : MonoBehaviour
     [Header("Canvas")]
     [SerializeField] private GameObject interviewCanvas;
     [SerializeField] private GameObject resultCanvas;
+    [SerializeField] private GameObject welcomeCanvas;
 
     [Header("Result UI")]
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text resultText;
 
+    private List<QuestionData> randomizedQuestions;
+
     private int currentQuestion = 0;
     private int score = 0;
-
-    private const int TOTAL_QUESTIONS = 3;
 
     private void Start()
     {
@@ -33,58 +38,53 @@ public class InterviewQuiz : MonoBehaviour
             resultCanvas.SetActive(false);
         }
 
+        randomizedQuestions = new List<QuestionData>(questions);
+
+        ShuffleQuestions();
+
         LoadQuestion();
+    }
+
+    private void ShuffleQuestions()
+    {
+        for (int i = 0; i < randomizedQuestions.Count; i++)
+        {
+            int randomIndex =
+                Random.Range(i, randomizedQuestions.Count);
+
+            QuestionData temp =
+                randomizedQuestions[i];
+
+            randomizedQuestions[i] =
+                randomizedQuestions[randomIndex];
+
+            randomizedQuestions[randomIndex] =
+                temp;
+        }
     }
 
     private void LoadQuestion()
     {
+        QuestionData question =
+            randomizedQuestions[currentQuestion];
+
         progressText.text =
-            $"{currentQuestion + 1}  /  {TOTAL_QUESTIONS}";
+            $"Soal {currentQuestion + 1} / {randomizedQuestions.Count}";
 
-        switch (currentQuestion)
-        {
-            case 0:
+        speakerText.text =
+            question.speaker;
 
-                speakerText.text = "Interviewer";
+        questionText.text =
+            question.question;
 
-                questionText.text =
-                    "Apa data struktur yang cocok\n" +
-                    "untuk mengelola data pencarian\n" +
-                    "karyawan dengan instan?";
+        answerAText.text =
+            question.answerA;
 
-                answerAText.text = "Queue";
-                answerBText.text = "Linked List";
-                answerCText.text = "Hash Map";
+        answerBText.text =
+            question.answerB;
 
-                break;
-
-            case 1:
-
-                speakerText.text = "Interviewer";
-
-                questionText.text =
-                    "Bahasa pemrograman yang umum\n" +
-                    "digunakan untuk backend web?";
-
-                answerAText.text = "Go";
-                answerBText.text = "HTML";
-                answerCText.text = "PNG";
-
-                break;
-
-            case 2:
-
-                speakerText.text = "Interviewer";
-
-                questionText.text =
-                    "SQL digunakan untuk apa?";
-
-                answerAText.text = "Menggambar UI";
-                answerBText.text = "Mengelola Database";
-                answerCText.text = "Editing Video";
-
-                break;
-        }
+        answerCText.text =
+            question.answerC;
     }
 
     public void AnswerA()
@@ -104,9 +104,10 @@ public class InterviewQuiz : MonoBehaviour
 
     private void CheckAnswer(int selectedAnswer)
     {
-        int correctAnswer = GetCorrectAnswer();
+        QuestionData question =
+            randomizedQuestions[currentQuestion];
 
-        if (selectedAnswer == correctAnswer)
+        if (selectedAnswer == question.correctAnswer)
         {
             score++;
         }
@@ -114,28 +115,11 @@ public class InterviewQuiz : MonoBehaviour
         NextQuestion();
     }
 
-    private int GetCorrectAnswer()
-    {
-        switch (currentQuestion)
-        {
-            case 0:
-                return 2; // C = Hash Map
-
-            case 1:
-                return 0; // A = Go
-
-            case 2:
-                return 1; // B = Database
-        }
-
-        return -1;
-    }
-
     private void NextQuestion()
     {
         currentQuestion++;
 
-        if (currentQuestion >= TOTAL_QUESTIONS)
+        if (currentQuestion >= randomizedQuestions.Count)
         {
             ShowResult();
             return;
@@ -146,33 +130,32 @@ public class InterviewQuiz : MonoBehaviour
 
     private void ShowResult()
     {
-        if (interviewCanvas != null)
+        interviewCanvas.SetActive(false);
+
+        if (welcomeCanvas != null)
         {
-            interviewCanvas.SetActive(false);
+            welcomeCanvas.SetActive(false);
         }
 
-        if (resultCanvas != null)
-        {
-            resultCanvas.SetActive(true);
-        }
+        resultCanvas.SetActive(true);
 
         scoreText.text =
-            $"Nilai: {score} / {TOTAL_QUESTIONS}";
+            $"Nilai: {score} / {randomizedQuestions.Count}";
 
         float percentage =
-            (float)score / TOTAL_QUESTIONS;
+            (float)score / randomizedQuestions.Count;
 
         bool passed =
             percentage >= 0.5f;
 
         if (passed)
         {
-            resultText.text = "LULUS INTERVIEW";
+            resultText.text = "LULUS";
             resultText.color = Color.green;
         }
         else
         {
-            resultText.text = "TIDAK LULUS INTERVIEW";
+            resultText.text = "TIDAK LULUS";
             resultText.color = Color.red;
         }
     }
