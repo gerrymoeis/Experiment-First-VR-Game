@@ -26,6 +26,9 @@ public class InterviewQuiz : MonoBehaviour
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text resultText;
 
+    [Header("Game Flow")]
+    [SerializeField] private GameFlowController gameFlow;
+
     private List<QuestionData> randomizedQuestions;
 
     private int currentQuestion = 0;
@@ -132,11 +135,6 @@ public class InterviewQuiz : MonoBehaviour
     {
         interviewCanvas.SetActive(false);
 
-        if (welcomeCanvas != null)
-        {
-            welcomeCanvas.SetActive(false);
-        }
-
         resultCanvas.SetActive(true);
 
         scoreText.text =
@@ -152,11 +150,21 @@ public class InterviewQuiz : MonoBehaviour
         {
             resultText.text = "LULUS";
             resultText.color = Color.green;
+
+            if (gameFlow != null)
+            {
+                gameFlow.InterviewPassed();
+            }
         }
         else
         {
             resultText.text = "TIDAK LULUS";
             resultText.color = Color.red;
+
+            if (gameFlow != null)
+            {
+                gameFlow.InterviewFailed();
+            }
         }
     }
 }

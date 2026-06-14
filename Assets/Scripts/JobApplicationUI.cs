@@ -11,11 +11,13 @@ public class JobApplicationUI : MonoBehaviour
 
     [Header("UI Screen Space")]
     [SerializeField] private TMP_Text playerNameText;
-    [SerializeField] private TMP_Text taskText;
 
     [Header("Interview Canvas")]
     [SerializeField] private GameObject interviewCanvas01;
     [SerializeField] private GameObject interviewCanvas02;
+
+    [Header("Game Flow")]
+    [SerializeField] private GameFlowController gameFlow;
 
     private int assignedRoom;
 
@@ -35,11 +37,6 @@ public class JobApplicationUI : MonoBehaviour
         {
             interviewCanvas02.SetActive(false);
         }
-
-        if (taskText != null)
-        {
-            taskText.text = "";
-        }
     }
 
     public void OpenNameInputPanel()
@@ -54,13 +51,13 @@ public class JobApplicationUI : MonoBehaviour
         nameInputField.Select();
     }
 
-    // Untuk tombol Submit
+    // Tombol Submit
     public void SubmitName()
     {
         SubmitName(nameInputField.text);
     }
 
-    // Untuk On End Edit(String)
+    // On End Edit
     public void SubmitName(string enteredName)
     {
         if (playerNameText == null ||
@@ -72,24 +69,19 @@ public class JobApplicationUI : MonoBehaviour
         if (string.IsNullOrEmpty(finalName))
             return;
 
-        // Simpan nama ke UI
         playerNameText.text = finalName;
 
-        // Tutup panel input
         nameInputPanel.SetActive(false);
 
-        // Pilih ruangan secara random
         assignedRoom = Random.Range(1, 3);
 
-        // Tampilkan tugas
-        if (taskText != null)
+        if (gameFlow != null)
         {
-            taskText.text =
+            gameFlow.SetTask(
                 $"1. Masuk Ruang {assignedRoom:00}\n" +
-                "2. Klik tombol Mulai Interview";
+                "2. Klik tombol Mulai Interview");
         }
 
-        // Aktifkan canvas interview yang sesuai
         if (assignedRoom == 1)
         {
             interviewCanvas01.SetActive(true);
