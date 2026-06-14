@@ -3,80 +3,103 @@ using TMPro;
 
 public class GameFlowController : MonoBehaviour
 {
+    public static GameFlowController Instance;
+
     [Header("Screen Space UI")]
     [SerializeField] private TMP_Text taskText;
 
     [Header("Welcome UI")]
     [SerializeField] private GameObject welcomeCanvas;
 
-    [Header("Retry UI")]
-    [SerializeField] private GameObject retryCanvas;
-
     [Header("Receptionist UI")]
     [SerializeField] private GameObject receptionistCanvas;
 
+    [Header("Retry UI")]
+    [SerializeField] private GameObject retryCanvas;
+
+    [Header("Gameplay")]
+    [SerializeField] private GameObject navigationLine;
+
+    [SerializeField] private GameObject warehouseIntroCanvas;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
-        if (retryCanvas != null)
-            retryCanvas.SetActive(false);
+        if (navigationLine != null)
+            navigationLine.SetActive(false);
+
+        if (warehouseIntroCanvas != null)
+            warehouseIntroCanvas.SetActive(false);
 
         if (receptionistCanvas != null)
             receptionistCanvas.SetActive(false);
 
-        SetTask("");
-    }
-
-    //--------------------------------------------------
-    // TASK
-    //--------------------------------------------------
-
-    public void SetTask(string message)
-    {
-        if (taskText != null)
-            taskText.text = message;
-    }
-
-    //--------------------------------------------------
-    // INTERVIEW
-    //--------------------------------------------------
-
-    public void InterviewFailed()
-    {
-        SetTask("Maaf anda tidak lulus interview.\nSilahkan ulangi lagi proses lamar pekerjaan.");
-
         if (retryCanvas != null)
-            retryCanvas.SetActive(true);
-
-        if (welcomeCanvas != null)
-            welcomeCanvas.SetActive(false);
+            retryCanvas.SetActive(false);
     }
+
+    //-------------------------------------------------
 
     public void InterviewPassed()
     {
-        SetTask("Silahkan kembali ke resepsionis untuk mulai pekerjaan.");
-
         if (welcomeCanvas != null)
             welcomeCanvas.SetActive(false);
 
         if (receptionistCanvas != null)
             receptionistCanvas.SetActive(true);
+
+        SetTask(
+            "Silahkan kembali ke resepsionis\nuntuk memulai pekerjaan.");
     }
 
-    //--------------------------------------------------
-    // JOB
-    //--------------------------------------------------
+    //-------------------------------------------------
+
+    public void InterviewFailed()
+    {
+        if (welcomeCanvas != null)
+            welcomeCanvas.SetActive(false);
+
+        if (retryCanvas != null)
+            retryCanvas.SetActive(true);
+
+        SetTask(
+            "Maaf anda tidak lulus interview.\nSilahkan ulangi proses melamar pekerjaan.");
+    }
+
+    //-------------------------------------------------
 
     public void StartWorking()
     {
-        SetTask("Silahkan anda ke ruangan gudang.\nIkuti garis petunjuknya.");
-
         if (receptionistCanvas != null)
             receptionistCanvas.SetActive(false);
+
+        if (navigationLine != null)
+            navigationLine.SetActive(true);
+
+        SetTask(
+            "Silahkan menuju Gudang.\nIkuti garis petunjuk.");
     }
 
-    public void RetryApplication()
+    //-------------------------------------------------
+
+    public void ArriveWarehouse()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(
-            UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        if (navigationLine != null)
+            navigationLine.SetActive(false);
+
+        if (warehouseIntroCanvas != null)
+            warehouseIntroCanvas.SetActive(true);
+    }
+
+    //-------------------------------------------------
+
+    public void SetTask(string task)
+    {
+        if (taskText != null)
+            taskText.text = task;
     }
 }
