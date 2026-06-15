@@ -97,6 +97,12 @@ public class GameFlowController : MonoBehaviour
             warehouseIntroCanvas.SetActive(true);
     }
 
+    public void SortingFinished()
+    {
+        SetTask(
+            "Pekerjaan hari ini selesai.\nKembali ke resepsionis untuk izin pulang.");
+    }
+
     //-------------------------------------------------
 
     public void SetTask(string task)

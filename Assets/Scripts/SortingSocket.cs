@@ -1,26 +1,49 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class SortingSocket : MonoBehaviour
 {
     private XRSocketInteractor socket;
-    private bool counted = false;
+    private bool isFilled = false;
 
     private void Awake()
     {
         socket = GetComponent<XRSocketInteractor>();
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (socket == null)
+        socket.selectEntered.AddListener(OnItemInserted);
+        socket.selectExited.AddListener(OnItemRemoved);
+    }
+
+    private void OnDisable()
+    {
+        socket.selectEntered.RemoveListener(OnItemInserted);
+        socket.selectExited.RemoveListener(OnItemRemoved);
+    }
+
+    private void OnItemInserted(SelectEnterEventArgs args)
+    {
+        if (isFilled)
             return;
 
-        if (!counted && socket.hasSelection)
-        {
-            counted = true;
+        isFilled = true;
+        SortingManager.Instance.SocketFilled();
+    }
 
-            SortingManager.Instance.SocketFilled();
-        }
+    private void OnItemRemoved(SelectExitEventArgs args)
+    {
+        if (!isFilled)
+            return;
+
+        isFilled = false;
+        SortingManager.Instance.SocketEmptied();
+    }
+
+    public void ForceClear()
+    {
+        isFilled = false;
     }
 }
