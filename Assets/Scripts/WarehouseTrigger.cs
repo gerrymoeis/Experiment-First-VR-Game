@@ -6,13 +6,17 @@ public class WarehouseTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Trigger terkena oleh : " + other.name);
+
         if (triggered)
             return;
 
-        if (!other.CompareTag("MainCamera"))
+        if (!other.CompareTag("Player"))
             return;
 
         triggered = true;
+
+        Debug.Log("Player masuk gudang!");
 
         GameFlowController.Instance.ArriveWarehouse();
     }

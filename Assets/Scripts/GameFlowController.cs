@@ -88,6 +88,8 @@ public class GameFlowController : MonoBehaviour
 
     public void ArriveWarehouse()
     {
+        Debug.Log("ArriveWarehouse dipanggil");
+
         if (navigationLine != null)
             navigationLine.SetActive(false);
 
