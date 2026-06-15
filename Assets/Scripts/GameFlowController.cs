@@ -14,6 +14,9 @@ public class GameFlowController : MonoBehaviour
     [Header("Receptionist UI")]
     [SerializeField] private GameObject receptionistCanvas;
 
+    [Header("End Day UI")]
+    [SerializeField] private GameObject endDayCanvas;
+
     [Header("Retry UI")]
     [SerializeField] private GameObject retryCanvas;
 
@@ -37,6 +40,9 @@ public class GameFlowController : MonoBehaviour
 
         if (receptionistCanvas != null)
             receptionistCanvas.SetActive(false);
+
+        if (endDayCanvas != null)
+            endDayCanvas.SetActive(false);
 
         if (retryCanvas != null)
             retryCanvas.SetActive(false);
@@ -99,8 +105,14 @@ public class GameFlowController : MonoBehaviour
 
     public void SortingFinished()
     {
+        if (receptionistCanvas != null)
+            receptionistCanvas.SetActive(false);
+
+        if (endDayCanvas != null)
+            endDayCanvas.SetActive(true);
+
         SetTask(
-            "Pekerjaan hari ini selesai.\nKembali ke resepsionis untuk izin pulang.");
+            "Pekerjaan hari ini selesai.\nKembali ke resepsionis untuk lapor.");
     }
 
     //-------------------------------------------------
