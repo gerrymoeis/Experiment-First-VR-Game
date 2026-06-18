@@ -3257,14 +3257,14 @@ PrefabInstance:
     - target: {fileID: 5509671673096058552, guid: c5f4ec18e1f293849ac2c0653a96b8cb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1559398027}
+      objectReference: {fileID: 379911211}
     - target: {fileID: 5509671673096058552, guid: c5f4ec18e1f293849ac2c0653a96b8cb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RetryApplication
+      value: LoadScene
       objectReference: {fileID: 0}
     - target: {fileID: 5509671673096058552, guid: c5f4ec18e1f293849ac2c0653a96b8cb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameFlowController, Assembly-CSharp
+      value: SceneLoader, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5509671673096058552, guid: c5f4ec18e1f293849ac2c0653a96b8cb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -3388,6 +3388,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6027694119460165826, guid: c5f4ec18e1f293849ac2c0653a96b8cb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 599970937}
+    - targetCorrespondingSourceObject: {fileID: 283110923603501813, guid: c5f4ec18e1f293849ac2c0653a96b8cb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 379911211}
   m_SourcePrefab: {fileID: 100100000, guid: c5f4ec18e1f293849ac2c0653a96b8cb, type: 3}
 --- !u!224 &379911208 stripped
 RectTransform:
@@ -3399,6 +3402,24 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 158581562258566856, guid: c5f4ec18e1f293849ac2c0653a96b8cb, type: 3}
   m_PrefabInstance: {fileID: 379911207}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &379911210 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 283110923603501813, guid: c5f4ec18e1f293849ac2c0653a96b8cb, type: 3}
+  m_PrefabInstance: {fileID: 379911207}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &379911211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379911210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf5e82891cc30d74a90551a6720b5a94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneLoader
+  targetScene: MainVRScene
 --- !u!1 &382942634 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6429624093139724926, guid: 6eb5caa02fe8cb942b412e0e2ba24466, type: 3}
@@ -5041,7 +5062,7 @@ GameObject:
   - component: {fileID: 550158697}
   - component: {fileID: 550158699}
   - component: {fileID: 550158698}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Warehouse Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5057,7 +5078,7 @@ Transform:
   m_GameObject: {fileID: 550158696}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -38.095, y: 0, z: 0.68}
+  m_LocalPosition: {x: -39.17, y: 0, z: 1.113}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
