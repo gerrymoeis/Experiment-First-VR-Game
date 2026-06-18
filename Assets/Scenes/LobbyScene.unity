@@ -1347,6 +1347,7 @@ MonoBehaviour:
   lobbyMusic: {fileID: 8300000, guid: b9ab8f78a7c4be04680f5ffff535eb8c, type: 3}
   mainMusic1: {fileID: 8300000, guid: ae0957e43d9a4de4cb700048b3cce972, type: 3}
   mainMusic2: {fileID: 8300000, guid: 28fc24d8c7143fd4f9fafde23866b41f, type: 3}
+  musicVolume: 0.5
   fadeDuration: 2
 --- !u!82 &604508781
 AudioSource:
@@ -3949,21 +3950,57 @@ PrefabInstance:
       propertyPath: m_VerticalAlignment
       value: 512
       objectReference: {fileID: 0}
+    - target: {fileID: 1290565119555807952, guid: 282cbc8998c78c949803d5d603777406, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 4.432617
+      objectReference: {fileID: 0}
+    - target: {fileID: 1290565119555807952, guid: 282cbc8998c78c949803d5d603777406, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000015258789
+      objectReference: {fileID: 0}
+    - target: {fileID: 2272486790363614211, guid: 282cbc8998c78c949803d5d603777406, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2272486790363614211, guid: 282cbc8998c78c949803d5d603777406, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2272486790363614211, guid: 282cbc8998c78c949803d5d603777406, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2272486790363614211, guid: 282cbc8998c78c949803d5d603777406, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2272486790363614211, guid: 282cbc8998c78c949803d5d603777406, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -735.425
+      value: 368.575
       objectReference: {fileID: 0}
     - target: {fileID: 2272486790363614211, guid: 282cbc8998c78c949803d5d603777406, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -356.4246
+      value: 43.57541
       objectReference: {fileID: 0}
     - target: {fileID: 2272486790363614211, guid: 282cbc8998c78c949803d5d603777406, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 356.346
+      value: -195.65399
       objectReference: {fileID: 0}
     - target: {fileID: 2272486790363614211, guid: 282cbc8998c78c949803d5d603777406, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 164.25162
+      value: -35.748383
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448987307460839565, guid: 282cbc8998c78c949803d5d603777406, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448987307460839565, guid: 282cbc8998c78c949803d5d603777406, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448987307460839565, guid: 282cbc8998c78c949803d5d603777406, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 3252236557865604696, guid: 282cbc8998c78c949803d5d603777406, type: 3}
       propertyPath: m_Color.a
